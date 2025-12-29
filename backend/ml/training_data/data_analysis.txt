@@ -1,0 +1,38 @@
+Engagement Rate Statistics:
+count    179.000000
+mean       0.034271
+std        0.153086
+min        0.000502
+25%        0.002349
+50%        0.003388
+75%        0.005144
+max        1.487951
+Name: engagement_rate, dtype: float64
+
+Top 5 Most Engaging Posts:
+    content_length  hashtag_count  has_image  engagement_rate  total_engagement
+48             302              1          1         1.487951            106734
+47             295              2          1         0.896250             64290
+21             236              4          1         0.662157             47498
+9              154              3          1         0.584647             41938
+20             154              3          1         0.562620             40358
+
+Feature Correlations with Engagement:
+engagement_rate       1.000000
+total_engagement      1.000000
+favorite_count        0.998835
+retweet_count         0.995099
+reply_count           0.926953
+mentions_count        0.280718
+is_engagement_post    0.126265
+content_length        0.063943
+hashtag_count        -0.004850
+emoji_count          -0.015020
+is_promotional       -0.031696
+is_product_post      -0.040982
+post_time_day        -0.178412
+post_time_hour       -0.183142
+urls_count           -0.231819
+has_image                  NaN
+has_price                  NaN
+Name: engagement_rate, dtype: float64
