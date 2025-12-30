@@ -7,7 +7,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 class ApiKeyManager {
   constructor() {
     this.currentKeyIndex = 1;
-    this.maxKeys = 6;
+    this.maxKeys = 7;
     this.keyPrefix = 'HUGGINGFACE_API_KEY';
     this.validateKeys();
   }
