@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RiMagicLine, RiFileTextLine, RiImageLine, RiVideoLine } from 'react-icons/ri';
 import { auth, db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { API_URL } from '../config';
 
 export default function ContentStudio() {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -162,7 +163,7 @@ export default function ContentStudio() {
   const generateEmailPreview = async () => {
     try {
       setEmailData(prev => ({ ...prev, loading: true, error: null }));
-      const response = await fetch('http://localhost:5005/api/email/preview', {
+      const response = await fetch('${API_URL}/api/email/preview', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +203,7 @@ export default function ContentStudio() {
 
     try {
       setEmailData(prev => ({ ...prev, loading: true, error: null }));
-      const response = await fetch('http://localhost:5005/api/email/campaign', {
+      const response = await fetch('${API_URL}/api/email/campaign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -316,8 +317,8 @@ export default function ContentStudio() {
 
       // Generate content with performance data if available
       const endpoint = performanceData ? 
-        'http://localhost:5005/api/content/generate-optimized' : 
-        'http://localhost:5005/api/content/generate';
+        '${API_URL}/api/content/generate-optimized' : 
+        '${API_URL}/api/content/generate';
       
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -360,7 +361,7 @@ export default function ContentStudio() {
           // Generate an image prompt based on the content
           const imagePrompt = `Generate an image for ${socialMediaData.platform} post for best branding based on the following idea: ${prompt}`;
           
-          const response = await fetch('http://localhost:5005/api/content/generate-image', {
+          const response = await fetch('${API_URL}/api/content/generate-image', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -463,7 +464,7 @@ export default function ContentStudio() {
       // Generate an image prompt based on the content
       const imagePrompt = `Generate an image for ${socialMediaData.platform} post for best branding based on the following idea: ${prompt}`;
       
-      const response = await fetch('http://localhost:5005/api/content/generate-image', {
+      const response = await fetch('${API_URL}/api/content/generate-image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -526,7 +527,7 @@ export default function ContentStudio() {
   const generateVideoScript = async () => {
     try {
       setVideoData(prev => ({ ...prev, loading: true, error: null }));
-      const response = await fetch('http://localhost:5005/api/content/video-script', {
+      const response = await fetch('${API_URL}/api/content/video-script', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1318,7 +1319,7 @@ export default function ContentStudio() {
                                 setSocialMediaData(prev => ({...prev, submittingRating: true}));
                                 
                                 // Send rating to backend
-                                const response = await fetch('http://localhost:5005/api/content/rate', {
+                                const response = await fetch('${API_URL}/api/content/rate', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json'

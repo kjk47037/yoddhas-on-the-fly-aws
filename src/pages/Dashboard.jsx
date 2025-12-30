@@ -13,8 +13,9 @@ import {
 } from '@heroicons/react/24/outline';
 import axios from 'axios';
 
-// Define API URL
-const API_URL = 'http://localhost:5005';
+import { API_URL } from '../config';
+
+// Remove hardcoded API URL
 
 export default function Dashboard() {
   const [goals, setGoals] = useState([
