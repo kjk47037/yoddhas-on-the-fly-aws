@@ -1,0 +1,190 @@
+{
+  "id": "audit_1750620474516",
+  "url": "https://zenkai-web.vercel.app/",
+  "status": "completed",
+  "progress": 100,
+  "currentStep": "Audit completed!",
+  "results": {
+    "overview": {
+      "score": 72,
+      "totalIssues": 3,
+      "criticalIssues": 1,
+      "warnings": 1,
+      "suggestions": 1,
+      "lastAudited": "2025-06-22T12:30:00.000Z"
+    },
+    "technical": {
+      "score": 78,
+      "issues": [
+        {
+          "type": "critical",
+          "title": "Missing Meta Description",
+          "description": "Your page is missing a meta description tag.",
+          "impact": "High",
+          "fix": "Add a meta description tag between 150-160 characters.",
+          "example": "<meta name=\"description\" content=\"Your compelling page description here\">"
+        },
+        {
+          "type": "warning",
+          "title": "Missing Alt Attributes on Some Images",
+          "description": "Some images are missing alt attributes.",
+          "impact": "Medium",
+          "fix": "Add descriptive alt text to all images.",
+          "example": "<img src=\"example.jpg\" alt=\"Description of image\">"
+        }
+      ]
+    },
+    "performance": {
+      "score": 90,
+      "metrics": {
+        "pageSpeed": "1.8",
+        "mobileSpeed": "2.3",
+        "firstContentfulPaint": "1.1s",
+        "largestContentfulPaint": "1.6s",
+        "cumulativeLayoutShift": "0.02"
+      },
+      "opportunities": [
+        "Enable text compression",
+        "Serve images in next-gen formats",
+        "Preconnect to required origins",
+        "Reduce unused CSS"
+      ],
+      "analysis": {
+        "totalImages": 5,
+        "imagesWithoutAlt": 2,
+        "largeImages": 2,
+        "estimatedPageSize": "42 KB"
+      }
+    },
+    "content": {
+      "score": 40,
+      "analysis": {
+        "titleTag": {
+          "present": true,
+          "length": 10,
+          "optimal": false,
+          "suggestion": "Extend title to 30-60 characters for better SEO."
+        },
+        "headings": {
+          "h1Count": 1,
+          "h2Count": 3,
+          "structure": "acceptable",
+          "issues": []
+        },
+        "keywordDensity": {
+          "primary": 2.9,
+          "optimal": false,
+          "suggestion": "Increase keyword usage slightly to improve relevance.",
+          "primaryKeyword": "zenkai"
+        },
+        "wordCount": 220,
+        "readability": "Fair",
+        "contentStructure": {
+          "paragraphs": 8,
+          "lists": 1,
+          "links": 6,
+          "images": 5
+        }
+      }
+    },
+    "keywords": {
+      "score": 60,
+      "primary": "zenkai",
+      "density": 2.9,
+      "opportunities": [
+        "web",
+        "platform",
+        "innovation",
+        "digital"
+      ],
+      "competitors": [
+        {
+          "keyword": "zenkai",
+          "difficulty": "Medium",
+          "volume": 12000
+        },
+        {
+          "keyword": "web",
+          "difficulty": "High",
+          "volume": 50000
+        },
+        {
+          "keyword": "platform",
+          "difficulty": "Medium",
+          "volume": 25000
+        }
+      ],
+      "keywordAnalysis": {
+        "totalWords": 190,
+        "uniqueWords": 120,
+        "topKeywords": [
+          {
+            "keyword": "zenkai",
+            "count": 5,
+            "density": "2.6"
+          },
+          {
+            "keyword": "web",
+            "count": 4,
+            "density": "2.1"
+          },
+          {
+            "keyword": "platform",
+            "count": 3,
+            "density": "1.6"
+          },
+          {
+            "keyword": "digital",
+            "count": 2,
+            "density": "1.1"
+          }
+        ]
+      }
+    },
+    "recommendations": [
+      {
+        "priority": "High",
+        "category": "Technical SEO",
+        "title": "Add a Meta Description",
+        "description": "A meta description helps search engines understand your page and can improve click-through rates.",
+        "impact": "Significant impact on indexing and CTR.",
+        "effort": "Low",
+        "steps": [
+          "Write a meta description of 150-160 characters.",
+          "Include your primary keyword (zenkai).",
+          "Add the meta description in your <head> section.",
+          "Verify with Google Search Console."
+        ]
+      },
+      {
+        "priority": "Medium",
+        "category": "Content",
+        "title": "Enhance Content Depth",
+        "description": "Your content is thin; adding more valuable content can improve rankings.",
+        "impact": "Moderate boost to SEO.",
+        "effort": "Medium",
+        "steps": [
+          "Expand your content to at least 500 words.",
+          "Include additional headings (H2, H3).",
+          "Add internal and external links.",
+          "Improve keyword distribution."
+        ]
+      },
+      {
+        "priority": "Low",
+        "category": "Performance",
+        "title": "Optimize Images",
+        "description": "Several images are large or missing alt attributes.",
+        "impact": "Slight improvement in load speed and accessibility.",
+        "effort": "Low",
+        "steps": [
+          "Compress and resize images.",
+          "Add alt text to all images.",
+          "Serve images in WebP format."
+        ]
+      }
+    ]
+  },
+  "startedAt": "2025-06-22T12:29:55.000Z",
+  "completedAt": "2025-06-22T12:30:00.000Z"
+}

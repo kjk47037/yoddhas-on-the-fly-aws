@@ -1,0 +1,177 @@
+{
+  "id": "audit_1690387200000",
+  "url": "https://www.myntra.com/",
+  "status": "completed",
+  "progress": 100,
+  "currentStep": "Audit completed!",
+  "results": {
+    "overview": {
+      "score": 72,
+      "totalIssues": 3,
+      "criticalIssues": 1,
+      "warnings": 1,
+      "suggestions": 1,
+      "lastAudited": "2025-07-25T10:00:00.000Z"
+    },
+    "technical": {
+      "score": 85,
+      "issues": [
+        {
+          "type": "critical",
+          "title": "Missing canonical tags on category pages",
+          "description": "Some category pages lack canonical link tags, risking duplicate content issues",
+          "impact": "High",
+          "fix": "Ensure proper canonicalization across paginated and filter variant pages",
+          "example": "<link rel=\"canonical\" href=\"https://www.myntra.com/category/…\" />"
+        },
+        {
+          "type": "warning",
+          "title": "Mixed content on some assets",
+          "description": "Some images/scripts loaded over HTTP on HTTPS site",
+          "impact": "Medium",
+          "fix": "Ensure that all resources are served over HTTPS"
+        }
+      ]
+    },
+    "performance": {
+      "score": 78,
+      "metrics": {
+        "pageSpeed": "2.8",
+        "mobileSpeed": "3.5",
+        "firstContentfulPaint": "1.7s",
+        "largestContentfulPaint": "2.5s",
+        "cumulativeLayoutShift": "0.12"
+      },
+      "opportunities": [
+        "Further optimize PWA preload strategies",
+        "Compress and lazy‑load images",
+        "Leverage modern image formats like WebP",
+        "Minify and bundle CSS/JS assets"
+      ],
+      "analysis": {
+        "totalImages": 25,
+        "imagesWithoutAlt": 2,
+        "largeImages": 5,
+        "estimatedPageSize": "2.3 MB"
+      }
+    },
+    "content": {
+      "score": 60,
+      "analysis": {
+        "titleTag": {
+          "present": true,
+          "length": 55,
+          "optimal": true,
+          "suggestion": null
+        },
+        "headings": {
+          "h1Count": 1,
+          "h2Count": 8,
+          "structure": "well‑structured",
+          "issues": []
+        },
+        "keywordDensity": {
+          "primary": 1.8,
+          "optimal": true,
+          "suggestion": null,
+          "primaryKeyword": "fashion"
+        },
+        "wordCount": 420,
+        "readability": "Good",
+        "contentStructure": {
+          "paragraphs": 25,
+          "lists": 4,
+          "links": 12,
+          "images": 10
+        }
+      }
+    },
+    "keywords": {
+      "score": 75,
+      "primary": "myntra",
+      "density": 1.5,
+      "opportunities": [
+        "saree", "lehenga", "ethnic wear"
+      ],
+      "competitors": [
+        {
+          "keyword": "saree",
+          "difficulty": "Medium",
+          "volume": 193000
+        },
+        {
+          "keyword": "lehenga",
+          "difficulty": "Medium‑High",
+          "volume": 201000
+        }
+      ],
+      "keywordAnalysis": {
+        "totalWords": 420,
+        "uniqueWords": 350,
+        "topKeywords": [
+          {
+            "keyword": "myntra",
+            "count": 6,
+            "density": "1.5"
+          },
+          {
+            "keyword": "saree",
+            "count": 5,
+            "density": "1.2"
+          },
+          {
+            "keyword": "fashion",
+            "count": 8,
+            "density": "1.9"
+          }
+        ]
+      }
+    },
+    "recommendations": [
+      {
+        "priority": "High",
+        "category": "Technical SEO",
+        "title": "Fix Duplicate Content Risks via Canonicals",
+        "description": "Ensure canonical tags are added to paginated and filter‑variant pages",
+        "impact": "Improved indexing and reduced penalties",
+        "effort": "Medium",
+        "steps": [
+          "Audit paginated category and filter URLs",
+          "Add correct canonical link elements",
+          "Validate implementation via Chrome DevTools",
+          "Test in Google Search Console URL Inspection"
+        ]
+      },
+      {
+        "priority": "Medium",
+        "category": "Performance",
+        "title": "Optimize PWA and Image Loading",
+        "description": "Improve perceived load times and reduce layout shifts",
+        "impact": "Better user experience on mobile and desktop",
+        "effort": "Medium",
+        "steps": [
+          "Defer non-critical JavaScript",
+          "Implement lazy‑loading for below‑the‑fold images",
+          "Convert large images to WebP",
+          "Review PWA service worker caching strategy"
+        ]
+      },
+      {
+        "priority": "Low",
+        "category": "Content",
+        "title": "Expand Category Page Copy",
+        "description": "Add richer content and internal links for SEO and usability",
+        "impact": "May increase visibility for longer tail keywords",
+        "effort": "Low",
+        "steps": [
+          "Add ~200‑300 words of descriptive content per category",
+          "Include internal links to subcategory pages",
+          "Ensure alt attributes on all images",
+          "Add FAQ schema where appropriate"
+        ]
+      }
+    ]
+  },
+  "startedAt": "2025-07-25T09:59:55.000Z",
+  "completedAt": "2025-07-25T10:00:10.000Z"
+}
