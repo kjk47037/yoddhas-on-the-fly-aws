@@ -14,6 +14,7 @@ export default function ContentStudio() {
     preview: null,
     loading: false,
     error: null,
+    isEditing: false,
   });
   const [videoData, setVideoData] = useState({
     preview: null,
@@ -1116,11 +1117,30 @@ export default function ContentStudio() {
                 <div className="bg-white rounded-lg p-4 shadow-inner">
                   <h3 className="font-semibold mb-4">Email Campaign Preview</h3>
                   {emailData.preview ? (
-                    <div className="max-h-[500px] overflow-y-auto">
-                      <div 
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: emailData.preview }}
-                      />
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-500">Edit the email content below:</span>
+                        <button 
+                          className="btn btn-xs btn-ghost"
+                          onClick={() => setEmailData(prev => ({ ...prev, isEditing: !prev.isEditing }))}
+                        >
+                          {emailData.isEditing ? 'Preview' : 'Edit HTML'}
+                        </button>
+                      </div>
+                      {emailData.isEditing ? (
+                        <textarea
+                          className="textarea textarea-bordered w-full h-96 font-mono text-sm"
+                          value={emailData.preview}
+                          onChange={(e) => setEmailData(prev => ({ ...prev, preview: e.target.value }))}
+                        />
+                      ) : (
+                        <div className="max-h-[500px] overflow-y-auto border rounded-lg p-4">
+                          <div 
+                            className="prose max-w-none"
+                            dangerouslySetInnerHTML={{ __html: emailData.preview }}
+                          />
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="alert ">
@@ -1210,7 +1230,12 @@ export default function ContentStudio() {
                           alt="Generated post image" 
                           className="w-full aspect-square object-cover rounded-lg mb-3"
                         />
-                        <p className="text-sm mb-2">{socialMediaData.preview}</p>
+                        <textarea
+                          className="textarea textarea-bordered w-full text-sm min-h-24"
+                          value={socialMediaData.preview}
+                          onChange={(e) => setSocialMediaData(prev => ({ ...prev, preview: e.target.value }))}
+                          placeholder="Edit your post caption..."
+                        />
                         
                         {/* Recommended Posting Time Badge */}
                         {socialMediaData.metadata?.recommendedPostingTime && (
@@ -1373,9 +1398,15 @@ export default function ContentStudio() {
                   <h3 className="font-semibold mb-4">Video Script Preview</h3>
                   {videoData.preview ? (
                     <div className="space-y-4">
-                      <div className="prose max-w-none whitespace-pre-line max-h-[500px] overflow-y-auto">
-                        {videoData.preview}
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-500">Edit the video script below:</span>
                       </div>
+                      <textarea
+                        className="textarea textarea-bordered w-full h-80 text-sm"
+                        value={videoData.preview}
+                        onChange={(e) => setVideoData(prev => ({ ...prev, preview: e.target.value }))}
+                        placeholder="Your video script..."
+                      />
                       {videoData.metadata && (
                         <div className="alert  mt-4">
                           <div>

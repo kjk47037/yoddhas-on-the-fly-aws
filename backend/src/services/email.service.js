@@ -50,23 +50,41 @@ class EmailService {
             messages: [
               {
                 role: 'system',
-                content: 'You are a professional email marketing expert. Create engaging, professional email content that drives action.'
+                content: `You are a professional email marketing expert. You MUST output ONLY valid HTML code for emails. 
+Do NOT use markdown formatting like **bold** or asterisks.
+Do NOT include explanations or labels like "Subject Line:" or "Header Section:".
+Output ONLY the HTML email body content that goes inside <body> tags.`
               },
               {
                 role: 'user',
-                content: `Write a professional marketing email with the following details:
+                content: `Create an HTML marketing email for: ${prompt}
 
-${prompt}
+Output ONLY this HTML structure (no markdown, no explanations):
 
-Requirements:
-- Use clear, professional language
-- Include a compelling subject line
-- Format with proper HTML structure
-- Add engaging call-to-action
-- Keep content concise and focused`
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <tr>
+    <td style="background-color: #007bff; padding: 20px; text-align: center;">
+      <h1 style="color: white; margin: 0;">BRAND NAME</h1>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 30px; background-color: #ffffff;">
+      <h2 style="color: #333; margin-top: 0;">Headline Here</h2>
+      <p style="color: #666; line-height: 1.6;">Email body content here...</p>
+      <a href="#" style="display: inline-block; background-color: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin-top: 20px;">Call to Action</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 12px; color: #666;">
+      <p style="margin: 0;">© 2025 Brand Name. All rights reserved.</p>
+    </td>
+  </tr>
+</table>
+
+Replace placeholders with relevant content for the campaign. Output ONLY the HTML, nothing else.`
               }
             ],
-            max_tokens: 500,
+            max_tokens: 800,
             temperature: 0.7
           },
           {
@@ -78,14 +96,23 @@ Requirements:
         );
       });
 
-      const cleanedResponse = response.data.choices[0].message.content.trim();
+      let cleanedResponse = response.data.choices[0].message.content.trim();
+      
+      // Remove any markdown formatting that might have slipped through
+      cleanedResponse = cleanedResponse
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **bold** to <strong>
+        .replace(/\*(.*?)\*/g, '<em>$1</em>') // Convert *italic* to <em>
+        .replace(/^```html\s*/i, '') // Remove opening code block
+        .replace(/```\s*$/i, '') // Remove closing code block
+        .replace(/^```\s*/gm, '') // Remove any remaining code blocks
+        .trim();
+      
+      // If response doesn't start with HTML tag, wrap it
+      if (!cleanedResponse.startsWith('<')) {
+        cleanedResponse = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">${cleanedResponse}</div>`;
+      }
 
-      // Wrap the content in proper HTML structure
-      return `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          ${cleanedResponse}
-        </div>
-      `;
+      return cleanedResponse;
     } catch (error) {
       console.error('Error generating email content:', error.response?.data || error.message);
       throw new Error('Failed to generate email content');
