@@ -186,4 +186,5 @@ Model files are saved with timestamps in `backend/ml/models/`.
 
 https://drive.google.com/file/d/1dmcibtPueMo7lZF3f6J-Y5g6wqNRQwrQ/view?usp=share_link
 
-![logo2](https://github.com/user-attachments/assets/714396b8-2767-4d48-8353-b7eb3b638251)
+
+<img width="650" height="650" alt="logo2" src="https://github.com/user-attachments/assets/362e1d7e-da64-4778-a3d3-a43c998c9fae" />
