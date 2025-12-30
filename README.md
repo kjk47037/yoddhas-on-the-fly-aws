@@ -2,91 +2,188 @@
 
 ## Overview
 
-This project is an AI-powered platform designed to automate content generation and streamline multi-platform marketing efforts. It leverages generative AI models to create engaging content and provides tools to manage and distribute it across various social media channels.
+OnTheFly is an intelligent marketing automation platform that helps small businesses and content creators generate, optimize, and manage social media content across multiple platforms using AI and machine learning.
 
-## Features
+## Key Features
 
-*   **AI Content Generation:** Utilizes state-of-the-art generative AI models (Google Gemini, Stable Diffusion via `diffusers`, and others via `transformers`) to create text and image-based content automatically.
-*   **Multi-Platform Integration:** Connects with social media platforms like Twitter (with potential for others like Facebook, etc.) to manage posts and campaigns.
-*   **Content Scheduling & Management:** Tools to schedule posts, manage generated content, and track performance (using Chart.js for visualization).
-*   **SEO Audit Tool:** AI-powered SEO Audit Tool that analyzes any website in one click and provides personalized, actionable fixes to boost search engine visibility.
-*   **User Authentication:** Secure user login and management (via Firebase Authentication).
-*   **API Endpoints:** Provides APIs for interacting with the backend services (built with FastAPI/Django and Node.js/Express).
+- **Content Studio** - AI-powered content generation with platform-specific optimization for Instagram, Twitter/X, and LinkedIn. Includes real-time ML predictions for engagement performance.
+- **Email Campaigns** - Automated email marketing with customizable templates and audience segmentation.
+- **Brand Kit Generator** - Automated brand identity creation including logos, color palettes, typography recommendations, and brand guidelines.
+- **Campaign Builder** - Multi-platform campaign management with scheduling, audience targeting, and performance tracking.
+- **Analytics Dashboard** - Real-time analytics aggregation from connected social platforms with AI-generated insights.
+- **SEO Audit** - Website analysis for search engine optimization with actionable recommendations.
+- **Competitor Analysis** - Instagram competitor analysis with AI-powered insights using Gemini API.
+- **WhatsApp Integration** - Automated engagement alerts via Twilio integration.
+- **Event-Based Triggers** - Automated actions triggered by user behavior, time-based events, or engagement milestones.
+- **Exit Intent Popup** - Smart popups that detect when users are about to leave and display targeted offers or CTAs.
 
-## Technology Stack
+## Architecture
 
-**Frontend:**
-*   Framework/Library: React
-*   Build Tool: Vite
-*   Styling: Tailwind CSS, DaisyUI
-*   Routing: React Router
-*   HTTP Client: Axios
-*   Charting: Chart.js
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              FRONTEND LAYER                                  │
+│                     React 18 + Vite + Tailwind + DaisyUI                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                      │
+                                      ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            API GATEWAY LAYER                                 │
+│                         Express.js REST API (:5005)                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                      │
+                 ┌────────────────────┼────────────────────┐
+                 ▼                    ▼                    ▼
+┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐
+│  Content Service    │  │   Flask Server      │  │   ML Server         │
+│  (Node.js)          │  │   (:5004)           │  │   (:5007)           │
+│                     │  │                     │  │                     │
+│  • Text Generation  │  │  • Twitter API v2   │  │  • Random Forest    │
+│  • Image Generation │  │  • Instagram API    │  │  • Engagement       │
+│  • Video Scripts    │  │  • Social Analytics │  │    Prediction       │
+└─────────────────────┘  └─────────────────────┘  └─────────────────────┘
+         │                                                  │
+         ▼                                                  ▼
+┌─────────────────────┐                          ┌─────────────────────┐
+│   AI/ML Services    │                          │   Data Storage      │
+│                     │                          │                     │
+│  • Llama 3.1-8B     │                          │  • Firebase         │
+│    (HuggingFace)    │                          │    Firestore        │
+│  • FLUX.1-schnell   │                          │  • SQLite           │
+│    (Wavespeed)      │                          │    (Events)         │
+│  • Gemini 2.5 Flash │                          │                     │
+└─────────────────────┘                          └─────────────────────┘
+```
 
-**Backend:**
-*   Python:
-    *   Frameworks: FastAPI, Django
-    *   AI/ML: `google-generativeai`, `diffusers`, `transformers`
-    *   Database: SQLite (for Django)
-*   Node.js:
-    *   Framework: Express
-    *   Cloud Functions: Firebase Functions for specific tasks (e.g., Twitter integration)
-*   Database: Firebase Firestore (used alongside Firebase Auth)
+## Tech Stack
 
-**Services:**
-*   Firebase (Authentication, Firestore, Functions, Hosting)
-*   Google Cloud (Implied by Google Generative AI usage)
+### Frontend
+- **Framework**: React 18 with Vite
+- **Styling**: Tailwind CSS + DaisyUI
+- **Routing**: React Router DOM
+- **Charts**: Recharts, Chart.js
+- **Icons**: React Icons, FontAwesome, Lucide
 
-**Environment Variables:**
-*   Uses `.env` files for configuration.
+### Backend
+- **Node.js Server**: Express.js (port 5005)
+- **Python Server**: Flask (port 5004) - Twitter/Instagram APIs
+- **ML Server**: Flask (port 5007) - Engagement predictions
+
+### AI/ML Services
+- **Text Generation**: HuggingFace Router (Llama-3.1-8B-Instruct)
+- **Image Generation**: FLUX.1-schnell via Wavespeed API
+- **Post Analysis**: Google Gemini 1.5 Flash
+- **Engagement Prediction**: Custom Random Forest classifier (18 features)
+
+### Database & Auth
+- **Database**: Firebase Firestore
+- **Authentication**: Firebase Auth
+- **Event Storage**: SQLite
+
+### External APIs
+- **Twitter API v2**: Analytics and posting
+- **RapidAPI Instagram**: Competitor analysis
+- **Twilio**: WhatsApp notifications
+
+
+## Built With
+
+This project was developed using [Kiro IDE](https://kiro.dev) - an AI-powered development environment that helped with spec-driven development, code generation, and iterative feature building.
 
 ## Setup and Installation
 
-**Prerequisites:**
-*   Node.js (check `package.json` for version)
-*   Python (check `requirements.txt` and `backend/requirements.txt` for version/details)
-*   Firebase CLI (`npm install -g firebase-tools`)
-*   Access keys/credentials for Firebase, Google AI, Twitter API, etc.
+### Prerequisites
+- Node.js 18+
+- Python 3.9+
+- Firebase CLI (`npm install -g firebase-tools`)
+- API keys for: Firebase, HuggingFace, Gemini, Twitter, RapidAPI, Twilio
 
-**Frontend:**
-1.  Navigate to the root directory.
-2.  Create a `.env` file based on `.env.example` (if available) or populate with necessary keys (e.g., `VITE_FIREBASE_...`, `VITE_TWITTER_...`).
-3.  Install dependencies: `npm install`
-4.  Run the development server: `npm run dev`
+### Frontend Setup
+```bash
+# Install dependencies
+npm install
 
-**Backend (Python - Root/FastAPI):**
-1.  Navigate to the root directory.
-2.  Create a Python virtual environment: `python -m venv venv`
-3.  Activate the virtual environment:
-    *   macOS/Linux: `source venv/bin/activate`
-    *   Windows: `.\venv\Scripts\activate`
-4.  Install dependencies: `pip install -r requirements.txt`
-5.  Configure necessary environment variables (refer to code or add `.env` support).
-6.  Run the FastAPI server (example): `uvicorn main:app --reload` (adjust `main:app` based on actual file/app name).
+# Create .env file with required variables
+# VITE_FIREBASE_API_KEY, VITE_GEMINI_API_KEY, etc.
 
-**Backend (Python - `backend/` Directory):**
-1.  Navigate to the `backend/` directory.
-2.  Create/activate a Python virtual environment (separate from the root one is recommended).
-3.  Install dependencies: `pip install -r requirements.txt`
-4.  Create a `.env` file with necessary keys (e.g., Google AI API Key).
-5.  Run migrations (if using Django): `python manage.py migrate`
-6.  Run the development server (if using Django): `python manage.py runserver`
+# Run development server
+npm run dev
+```
 
-**Firebase Functions:**
-1.  Navigate to the `functions/` directory.
-2.  Install dependencies: `npm install`
-3.  Configure environment variables for functions (e.g., using `firebase functions:config:set twitter.apikey="..."`). Refer to `functions/index.js` for required variables.
-4.  Deploy functions: `firebase deploy --only functions`
+### Backend Setup (Node.js)
+```bash
+cd backend
 
-## Usage
+# Install dependencies
+npm install
 
-1.  Ensure all services (Frontend, Backend(s), Functions) are running or deployed.
-2.  Access the frontend application through the URL provided by Vite (e.g., `http://localhost:5173`) or the deployed Firebase Hosting URL.
-3.  Log in or sign up (if authentication is implemented).
-4.  Use the platform features to generate content, connect social accounts, and manage posts.
+# Create .env file with API keys
 
-## Workflow Video:
+# Run server
+npm run dev  # runs on port 5005
+```
+
+### Backend Setup (Python - Flask)
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run Flask server
+python src/flask_server.py  # runs on port 5004
+```
+
+### ML Server Setup
+```bash
+cd backend/ml
+
+# Train the model (optional - pre-trained model included)
+python train.py
+
+# Run ML prediction server
+python -m flask run --port 5007
+```
+
+## Environment Variables
+
+### Frontend (.env)
+```
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_GEMINI_API_KEY=
+VITE_RAPIDAPI_KEY=
+VITE_MODELSLAB_API_KEY=
+```
+
+### Backend (.env)
+```
+API_KEY=           # Twitter API Key
+API_SECRET=        # Twitter API Secret
+ACCESS_TOKEN=      # Twitter Access Token
+ACCESS_TOKEN_SECRET=
+BEARER_TOKEN=
+GEMINI_API_KEY=
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+```
+
+## ML Model
+
+The engagement prediction model uses a Random Forest classifier trained on 18 features:
+- Content metrics (word count, hashtag count, emoji count, etc.)
+- Timing features (hour, day of week)
+- Platform-specific optimizations
+- Historical performance data
+
+Model files are saved with timestamps in `backend/ml/models/`.
+
+## Demo Video
 
 https://drive.google.com/file/d/1dmcibtPueMo7lZF3f6J-Y5g6wqNRQwrQ/view?usp=share_link
 
-<img width="650" height="650" alt="logo2" src="https://github.com/user-attachments/assets/d710e64c-f039-4bac-a23b-98074879a10a" />
+![logo2](https://github.com/user-attachments/assets/714396b8-2767-4d48-8353-b7eb3b638251)
